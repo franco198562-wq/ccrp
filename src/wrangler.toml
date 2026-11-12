@@ -1,0 +1,7 @@
+name = "ccrp-embeds"
+main = "src/index.js"
+compatibility_date = "2024-11-12"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
