@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CCRP Embed Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>CCRP Embed Dashboard</h1>
+      <p class="muted">Edit bot messages · Phase 1</p>
+    </div>
+    <div class="top-actions">
+      <button type="button" id="btn-load" class="secondary">Reload</button>
+      <button type="button" id="btn-save" class="primary">Save to cloud</button>
+    </div>
+  </header>
+
+  <section class="auth card" id="auth-panel">
+    <h2>Connection</h2>
+    <p class="muted">These stay in your browser only. Use the same secret as the bot <code>EMBED_API_SECRET</code>.</p>
+    <div class="grid two">
+      <label>
+        API URL
+        <input id="api-url" type="url" placeholder="https://your-dashboard.pages.dev/api/content" />
+      </label>
+      <label>
+        API secret
+        <input id="api-secret" type="password" placeholder="shared secret" autocomplete="off" />
+      </label>
+    </div>
+    <p id="status" class="status">Not connected</p>
+  </section>
+
+  <nav class="tabs" id="tabs">
+    <button type="button" data-tab="images" class="active">Images</button>
+    <button type="button" data-tab="ourad">Our Ad</button>
+    <button type="button" data-tab="affiliates">Affiliates</button>
+    <button type="button" data-tab="templates">Templates</button>
+    <button type="button" data-tab="raw">Raw JSON</button>
+  </nav>
+
+  <main>
+    <section class="tab card" id="tab-images">
+      <h2>Image URLs</h2>
+      <p class="muted">Used across the bot (main, footers, session banners, etc.).</p>
+      <div class="grid two" id="images-fields"></div>
+    </section>
+
+    <section class="tab card hidden" id="tab-ourad">
+      <h2>Our Ad</h2>
+      <p class="muted">Posted by <code>/ourad</code>.</p>
+      <label>
+        Ad text
+        <textarea id="ourad-text" rows="16" placeholder="Ad markdown / text..."></textarea>
+      </label>
+    </section>
+
+    <section class="tab card hidden" id="tab-affiliates">
+      <h2>Affiliates</h2>
+      <p class="muted">Panel disclaimer + dropdown entries for <code>/affiliates</code>.</p>
+      <label>
+        Panel disclaimer
+        <textarea id="affiliates-disclaimer" rows="4"></textarea>
+      </label>
+      <div class="row-between">
+        <h3>Entries</h3>
+        <button type="button" id="btn-add-affiliate" class="secondary">+ Add</button>
+      </div>
+      <div id="affiliates-list" class="stack"></div>
+    </section>
+
+    <section class="tab card hidden" id="tab-templates">
+      <h2>Message templates</h2>
+      <label>
+        Application accepted body
+        <textarea id="tpl-accept" rows="10"></textarea>
+      </label>
+      <label>
+        Application denied body
+        <textarea id="tpl-deny" rows="10"></textarea>
+      </label>
+      <label>
+        Partnership AI / staff blurb
+        <textarea id="tpl-partnership" rows="8"></textarea>
+      </label>
+    </section>
+
+    <section class="tab card hidden" id="tab-raw">
+      <h2>Raw JSON</h2>
+      <p class="muted">Advanced. Saving from other tabs overwrites this on next load.</p>
+      <textarea id="raw-json" rows="24" class="mono"></textarea>
+      <button type="button" id="btn-apply-raw" class="secondary">Apply JSON to form</button>
+    </section>
+  </main>
+
+  <footer class="foot muted">
+    Host on Cloudflare Pages · Bot reads this via <code>EMBED_API_URL</code>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
